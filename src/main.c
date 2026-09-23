@@ -9,7 +9,7 @@ int main(void) {
     char *line = NULL;  // getline will automatically allocate memory
     size_t len = 0;     // getline updates this with buffer size
 
-    while (1) {
+    do {
         printf("myshell> ");
         fflush(stdout); // Ensures prompt appears immediately
 
@@ -25,7 +25,9 @@ int main(void) {
         if (parse_args(args, MAX_ARGS, line) == 1) {
             printf("\n[!] Error occured\n[!] Exiting shell...\n");
         }
-    }
+
+        shell_execute(args);
+    } while(1);
 
     free(line); // Clean up allocated memory before exiting
     return 0;
